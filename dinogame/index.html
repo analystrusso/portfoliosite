@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dino Game</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquerykeyframes@1.0.8/dist/jquery.keyframes.min.js" integrity="sha256-w5t97kU2YTsUj+A3WtNb35ygoIPqVhtFS6Pt/NMyYCg=" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="game">
+        <button id="playgame">Play Game</button>
+        <audio id="jumpSound">
+            <source src="gamesounds\jumpsound.wav" type="audio/wav">
+        </audio>
+        <audio id="crashSound">
+            <source src="gamesounds\crashsound.wav" type="audio/wav">
+        </audio>
+
+        <audio id="bgSound" loop>
+            <source src="gamesounds\bgsound.wav" type="audio/wav">
+        </audio>
+        <button id="resetgame">Reset</button>
+        <div id="dino"></div>
+        <div id="scores">Score:</div>
+        <div id="cactus"></div>
+    </div>
+
+</body>
+</html>

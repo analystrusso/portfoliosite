@@ -1,0 +1,97 @@
+﻿.game {
+    width: 1000px;
+    height: 900px;
+    border: 1px solid #000000;
+    margin: auto;
+    background-image: url(gameimg/background.jpg);
+    position: relative;
+}
+
+#playgame {
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    top: 920px;
+    left: 450px;
+    animation-play-state: running;
+}
+
+#resetgame {
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    top: 920px;
+    left: 250px;
+    animation-play-state: running;
+}
+
+
+#scores {
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 15px 18px;
+    text-align: center;
+    position: fixed;
+    top: 930px;
+    left: 50px;
+    z-index: 1;
+}
+
+#dino {
+    width: 50px;
+    height: 50px;
+    background-image: url(gameimg/dino.png);
+    background-size: 50px 50px;
+    position: relative;
+    top: 750px;
+    left: 0px;
+}
+
+.jump {
+    animation: jump 0.3s linear;
+}
+
+@keyframes jump {
+    0% {
+        top: 750px;
+    }
+
+    30% {
+        top: 690px;
+    }
+
+    50% {
+        top: 630px;
+    }
+
+    80% {
+        top: 690px;
+    }
+
+    100% {
+        top: 750px;
+    }
+}
+
+#cactus {
+    width: 20px;
+    height: 45px;
+    position: relative;
+    top: 700px;
+    left: 980px;
+    background-image: url(gameimg/cactus.png);
+    background-size: 20px 40px;
+}
