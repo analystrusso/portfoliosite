@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <title>Technical Arts</title>
@@ -13,71 +13,98 @@
 <body>
     <h1 class="display-6">Over The Wire</h1>
     <h2 class="display-8">Bandit</h2>
+
+    <h3>Bandit 1 PW:</h3>
+    <p>NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</p>
+
+    <h3>Bandit 2 PW:</h3>
+    <p>rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi</p>
+    <p>note: for dashed filenames, need whole path (eg, ./-)</p>
+
+    <h3>Bandit 3 PW:</h3>
+    <p>aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG</p>
+    <p>note: for filenames with spaces, use quotes (eg, tail "./spaces in this filename" to tail a file called "spaces in this filename")</p>
+
+    <h3>Bandit 4 PW:</h3>
+    <p>2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe</p>
+    note: for hidden files, use ls -a to reveal them. Then you can tail, etc them as needed.</p>
+
+
+
+    <h3>Bandit 5 PW:</h3>
+    <p>lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR</p>
+    <p>note: use file -b (filepath) to determine in brief what kind of file this is. ./-file07 was an ASCII text file while the others were data files.</p>
+
+
+
+    <h3>Bandit 6 PW:</h3>
+    <p>P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU</p>
+    <p>note: to find a file of a particular size that's somewhere in a directory tree, use find (~/parentfolder) -ls | grep (size here). Then if you need to know what kind of file that is, run file -b (filepath of interest).</p>
+
+
+
+    <h3>Bandit 7 PW:</h3>
+    <p>z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S</p>
+    <p>note: if a file is SOMEWHERE on a server and you only know what user and group it belongs to and what size it is, go to the root directory and run find -type f (for file) -group (group) -user (user) -size (size) 2>/dev/null to output allerror messages (including Permission denied messages) to /dev/null, thus hiding them.</p>
+
+
+
+    <h3>Bandit 8 PW:</h3>
+    <p>TESKZC0XvTetK0S9xNwm25STk5iWrBvP</p>
+    <p>note: this was easier than intended. I know the password is in data.txt next to the word "millionth", so I ran nano data.txt, then ran ctrl+W to do a word search for the known keyword. The password string was to the right of the keyword.</p>
+
+
+
+    <h3>Bandit 9 PW:</h3>
+    <p>EN632PlfYiZbn3PhVK3XOGSlNInNE00t</p>
+    <p>note: this was tricky. tail data.txt | uniq -u -c returned 10 lines that occurred exactly once, but sort data.txt | uniq -u -c returned one line that occurred exactly once. Not sure why that is, though.</p>
+
+
+
+    <h3>Bandit 10 PW:</h3>
+    <p>G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s</p>
+    <p>note: this challenge has the password stored in data.txt in one of 4 human-readable strings, preceded by several "=" characters. I used strings data.txt | grep === to find all strings preceded by at least 3 = characters.</p>
+
+
+
+    <h3>Bandit 11 PW:</h3>
+    <p>6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM</p>
+    <p>note: this challenge has data.txt encoded in base64. Fortunately, running base64 data.txt -d decoded the file to give the password.</p>
+
+
+
+    <h3>Bandit 12 PW:</h3>
+    <p>JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv</p>
+    <p>note: I had to look this one up. It's a ROT13 cypher where the letters are rotated 13 positions forward in the alphabet. I knew to use tr to translate the data in data.txt, but getting the algorithm right was tough. sort data.txt | tr [a-z] [n-za-m] would work for lowercase letters, but the password itself was in capitals. So therefore I used sort data.txt | tr [a-zA-Z] [n-za-mN-ZA-M]</p>
+
+
+
+    <h3>Bandit 13 PW:</h3>
+    <p>wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw</p>
+    <p>note: this was a colossal pain in the ass. Here's the gist: data.txt was repeatedly compressed with a variety of methods, tar, gz, bzip. cat data.txt | xxd -r > data to reverse the hexdump and output the file to filename data. Then I do a file data to find that data used to be data2.bin but was gzip compressed. Then I do mv data data2.gzip to allow myself to then run gzip-d data2.gz to unzip the gz file that I turned data into. Then I rinse and repeat this process with each         and every compression type until I get down to file data9 returning ASCII text. Then I cat data9 to reveal the password.</p>
+
+
+
+    <h3>Bandit 14 PW:</h3>
+    <p>fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq</p>
+    <p>note: in order to pass this level, I needed to SSH into level 14 using ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220. The -i tells ssh to use the specific key, in this case sshkey.private, to secure the connection and log me in without needing a password.</p>
+
+
+
+    <h3>Bandit 15 PW:</h3>
+    <p>jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt</p>
+    <p>note: this one the answer was right in front of me but I didn't see it. I had to use netcat (nc) to connect to localhost on port 30000. I used the following command: nc -v 127.0.0.1 30000. Then the terminal looked like it was processing my command, but what it was really doing was waiting for me to input bandit14's password. Once I did that, I was given bandit15's password.</p>
+
+
+
+    <h3>Bandit 16 PW:</h3>
+    <p>JQttfApK4SeyHwDlI9SXGR50qclOAil1</p>
+    <p>note: This was similar to the last one in presentation, though the directions about what to do when getting Read R BLOCK was a bit misleading. All I had to do is run openssl s_client -connect 127.0.0.1:30001 and then paste in bandit15's password in order to get the pw for 16.</p>
+
+
+
+    <h3>Bandit 17 PW:</h3>
     <p>
-        bandit 1 pw:
-        NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL</p>
-
-        <p>bandit 2 pw:
-        rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
-        note: for dashed filenames, need whole path (eg, ./-)</p>
-
-        <p>bandit 3 pw:
-        aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
-        note: for filenames with spaces, use quotes (eg, tail "./spaces in this filename" to tail a file called "spaces in this filename")</p>
-
-        <p>bandit 4 pw:
-        2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
-        note: for hidden files, use ls -a to reveal them. Then you can tail, etc them as needed.</p>
-
-        <p>bandit 5 pw:
-        lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
-        note: use file -b (filepath) to determine in brief what kind of file this is. ./-file07 was an ASCII text file while the others were data files.</p>
-
-        <p>bandit 6 pw:
-        P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
-        note: to find a file of a particular size that's somewhere in a directory tree, use find (~/parentfolder) -ls | grep (size here). Then if you need to know what kind of file that is, run file -b (filepath of interest).</p>
-
-        <p>bandit 7 pw:
-        z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
-        note: if a file is SOMEWHERE on a server and you only know what user and group it belongs to and what size it is, go to the root directory and run find -type f (for file) -group (group) -user (user) -size (size) 2>/dev/null to output all           error messages (including Permission denied messages) to /dev/null, thus hiding them.</p>
-
-        <p>bandit 8 pw:
-        TESKZC0XvTetK0S9xNwm25STk5iWrBvP
-        note: this was easier than intended. I know the password is in data.txt next to the word "millionth", so I ran nano data.txt, then ran ctrl+W to do a word search for the known keyword. The password string was to the right of the keyword.</p>
-
-        <p>bandit 9 pw:
-        EN632PlfYiZbn3PhVK3XOGSlNInNE00t
-        note: this was tricky. tail data.txt | uniq -u -c returned 10 lines that occurred exactly once, but sort data.txt | uniq -u -c returned one line that occurred exactly once. Not sure why that is, though.</p>
-        
-        <p>bandit 10 pw:
-        G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
-        note: this challenge has the password stored in data.txt in one of 4 human-readable strings, preceded by several "=" characters. I used strings data.txt | grep === to find all strings preceded by at least 3 = characters.</p>
-        
-        <p>bandit 11 pw:
-        6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
-        note: this challenge has data.txt encoded in base64. Fortunately, running base64 data.txt -d decoded the file to give the password.</p>
-        
-        <p>bandit 12 pw:
-        JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
-        note: I had to look this one up. It's a ROT13 cypher where the letters are rotated 13 positions forward in the alphabet. I knew to use tr to translate the data in data.txt, but getting the algorithm right was tough. sort data.txt | tr [a-          z] [n-za-m] would work for lowercase letters, but the password itself was in capitals. So therefore I used sort data.txt | tr [a-zA-Z] [n-za-mN-ZA-M]</p>
-        
-        <p>bandit 13 pw:
-        wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
-        note: this was a colossal pain in the ass. Here's the gist: data.txt was repeatedly compressed with a variety of methods, tar, gz, bzip. cat data.txt | xxd -r > data to reverse the hexdump and output the file to filename data. Then I do a         file data to find that data used to be data2.bin but was gzip compressed. Then I do mv data data2.gzip to allow myself to then run gzip-d data2.gz to unzip the gz file that I turned data into. Then I rinse and repeat this process with each         and every compression type until I get down to file data9 returning ASCII text. Then I cat data9 to reveal the password.</p>
-        
-        <p>bandit 14 pw:
-        fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
-        note: in order to pass this level, I needed to SSH into level 14 using ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220. The -i tells ssh to use the specific key, in this case sshkey.private, to secure the connection and          log me in without needing a password.</p>
-        
-        <p>bandit 15 pw:
-        jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
-        note: this one the answer was right in front of me but I didn't see it. I had to use netcat (nc) to connect to localhost on port 30000. I used the following command: nc -v 127.0.0.1 30000. Then the terminal looked like it was processing            my command, but what it was really doing was waiting for me to input bandit14's password. Once I did that, I was given bandit15's password.</p>
-        
-        <p>bandit 16 pw:
-        JQttfApK4SeyHwDlI9SXGR50qclOAil1
-        note: This was similar to the last one in presentation, though the directions about what to do when getting Read R BLOCK was a bit misleading. All I had to do is run openssl s_client -connect 127.0.0.1:30001 and then paste in bandit15's            password in order to get the pw for 16.</p>
-        
-        <p>bandit 17 pw:
         -----BEGIN RSA PRIVATE KEY-----
         MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
         imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
@@ -105,45 +132,60 @@
         dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
         vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
         -----END RSA PRIVATE KEY-----
-        note: I used nmap -sV -p 31000-32000 localhost to find out which ports within 31000 and 32000 are open and which services those ports are running. All the open ports in that range were running echo or ssl/echo except for 31790 which was            running ssl/unknown. I then ran openssl s_client -connect 127.0.0.1:31790 and input bandit16's password. Doing so returned the above RSA private key. This is similar to what I did in level 14, but also had the following wrinkle: if I made          sshkey.private with this key on my own machine, I was told the permissions were too open. So I had to do chmod 700 on the file in order to make the file read-only before it was acceptable.</p>
-        
-        <p>bandit 18 pw: 
-        hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
-        note: I solved this by first running man diff to learn how to use the diff command. Then I used diff passwords.old passwords.new --suppress-common-lines to see only what the differences were between passwords.old and .new. Then I used cat          passwords.new | grep hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg to confirm that this is the password for bandit18.</p>
-        
-        <p>bandit 19 pw: 
-        awhqfNnAbc1naukrpqDYcF95h7HoMTrC
-        note: this was weird. I was ready for needing a ; to run commands consecutively (eg: ls ; cat readme to get files and then cat readme, but when sshing into a server, I don't actually need the ;.</p>
-        
-        <p>bandit 20 pw:
-        VxCazJaVykI6W36BkBU0mJTCM8rR95XT
-        note: this one was pretty cool, actually. I found the bandit20-do binary right away, and I thought that file represented a locked door. In reality, that binary is really a key to /etc/bandit_pass/bandit20. So I ran the binary with ./              bandit20-do  to then allow me to cat /etc/bandit_pass/bandit20. If I ran the cat command by itself, I'd get a "permission denied" warning. Preceding the cat command with the setuid binary lets me run cat on the password file as though I            were bandit20.</p>
-        
-        <p>bandit 21 pw:
-        NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
-        note: this is a lesson in reading comprehension. I took the instructions to mean that I had to find the port needed to retrieve the next password. In reality, I needed to specify a port - ANY PORT - in order to make this work. I ran echo -         n 'VxCazJaVykI6W36BkBU0mJTCM8rR95XT' | nc -l -p 1234 & to create a netcat server on port 1234 and told it to run in the background and echo (read: read) the password for bandit20 when I run ./suconnect 1234. When it read the password, it           kicked back the password for 21. I took the instructions both too literally and not literally enough.</p>
-        
-        <p>bandit 22 pw:
-        WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
-        note: For this level, I looked in /etc/cron.d/cronjob_bandit22 in order to find the command /usr/bin/cronjob_bandit22.sh &> /dev/null. I then did cat /usr/bin/cronjob_bandit_22.sh to get to /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv. Catting            that got me the final password.</p>
-        
-        <p>bandit 23 pw:
-        QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
-        note: Similar to the previous level. I went to /etc/cron.d/ to get to /usr/bin/cronjob_bandit23.sh. That script does the following:
-        #!/bin/bash
-        
-        myname=$(whoami)
-        mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
-        
-        echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
-        
-        cat /etc/bandit_pass/$myname > /tmp/$mytarget
-        
-        Because I can't run the script as a whole, I ran it piecemeal as though I were bandit23, substituting that username for $myname, and copying /etc/bandit_pass/bandit23 to /tmp/$mytarget. I couldn't actually copy the file, as I didn't have           permission, but I could pipe the cp command to cat /tmp/$mytarget, which gave me the password.</p>
-        
-        <p>bandit 24 pw:
-        VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
-        note: This one was really annoying in its simplicity: all I had to do was write a shell script to cat /etc/bandit_pass/bandit24 and redirect the output to /tmp/rand/password. This worked because the destination folder and file has rwx              permissions on it, and because the script cronjob_bandit24.sh runs as user bandit24, it can get the password out of /bandit_pass and redirect it to my password text file.
-        </p>
+    </p>
+    <p>note: I used nmap -sV -p 31000-32000 localhost to find out which ports within 31000 and 32000 are open and which services those ports are running. All the open ports in that range were running echo or ssl/echo except for 31790 which was running ssl/unknown. I then ran openssl s_client -connect 127.0.0.1:31790 and input bandit16's password. Doing so returned the above RSA private key. This is similar to what I did in level 14, but also had the following wrinkle: if I made sshkey.private with this key on my own machine, I was told the permissions were too open. So I had to do chmod 700 on the file in order to make the file read-only before it was acceptable.</p>
+
+
+
+    <h3>Bandit 18 PW:</h3>
+    <p>hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg</p>
+    <p>note: I solved this by first running man diff to learn how to use the diff command. Then I used diff passwords.old passwords.new --suppress-common-lines to see only what the differences were between passwords.old and .new. Then I used cat passwords.new | grep hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg to confirm that this is the password for bandit18.</p>
+
+
+
+    <h3>Bandit 19 PW:</h3>
+    <p>awhqfNnAbc1naukrpqDYcF95h7HoMTrC</p>
+    <p>note: this was weird. I was ready for needing a ; to run commands consecutively (eg: ls ; cat readme to get files and then cat readme, but when sshing into a server, I don't actually need the ;.</p>
+
+
+
+    <h3>Bandit 20 PW:</h3>
+    <p>VxCazJaVykI6W36BkBU0mJTCM8rR95XT</p>
+    <p>note: this one was pretty cool, actually. I found the bandit20-do binary right away, and I thought that file represented a locked door. In reality, that binary is really a key to /etc/bandit_pass/bandit20. So I ran the binary with ./bandit20-do  to then allow me to cat /etc/bandit_pass/bandit20. If I ran the cat command by itself, I'd get a "permission denied" warning. Preceding the cat command with the setuid binary lets me run cat on the password file as though I were bandit20.</p>
+
+
+
+    <h3>Bandit 21 PW:</h3>
+    <p>NvEJF7oVjkddltPSrdKEFOllh9V1IBcq</p>
+    <p>note: this is a lesson in reading comprehension. I took the instructions to mean that I had to find the port needed to retrieve the next password. In reality, I needed to specify a port - ANY PORT - in order to make this work. I ran echo -n 'VxCazJaVykI6W36BkBU0mJTCM8rR95XT' | nc -l -p 1234 & to create a netcat server on port 1234 and told it to run in the background and echo (read: read) the password for bandit20 when I run ./suconnect 1234. When it read the password, it kicked back the password for 21. I took the instructions both too literally and not literally enough.</p>
+
+
+
+    <h3>Bandit 22 PW:</h3>
+    <p>WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff</p>
+    <p>note: For this level, I looked in /etc/cron.d/cronjob_bandit22 in order to find the command /usr/bin/cronjob_bandit22.sh &> /dev/null. I then did cat /usr/bin/cronjob_bandit_22.sh to get to /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv. Catting that got me the final password.</p>
+
+
+
+    <h3>Bandit 23 PW:</h3>
+    <p>QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G</p>
+    <p>note: Similar to the previous level. I went to /etc/cron.d/ to get to /usr/bin/cronjob_bandit23.sh. That script does the following:</p>
+    <p>#!/bin/bash</p>
+
+    <p>myname=$(whoami)</p>
+    <p>mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)</p>
+
+    <p>echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"</p>
+
+    <p>cat /etc/bandit_pass/$myname > /tmp/$mytarget</p>
+
+    <p>Because I can't run the script as a whole, I ran it piecemeal as though I were bandit23, substituting that username for $myname, and copying /etc/bandit_pass/bandit23 to /tmp/$mytarget. I couldn't actually copy the file, as I didn't have permission, but I could pipe the cp command to cat /tmp/$mytarget, which gave me the password.</p>
+
+
+
+    <h3>Bandit 24 PW:</h3>
+    <p>VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar</p>
+    <p>note: This one was really annoying in its simplicity: all I had to do was write a shell script to cat /etc/bandit_pass/bandit24 and redirect the output to /tmp/rand/password. This worked because the destination folder and file has rwx permissions on it, and because the script cronjob_bandit24.sh runs as user bandit24, it can get the password out of /bandit_pass and redirect it to my password text file.</p>
+
 </body>
 </html>
