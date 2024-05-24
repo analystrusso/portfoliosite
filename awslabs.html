@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <title>Technical Arts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+        <div class="container">
+        <h1 class="display-6">AWS Labs</h1>
+        <h2 class="display-8">Simple Web Application</h2>
+        </div>
+
+        <div class="container">
+            <p>
+                I made a simple web application using AWS Amplify, Lambda, API Gateway, and 
+                DynamoDB that consisted of a website that asks for a first and last name. Then,
+                when you click on the Call API button, a pop-up appears that says "Hello from 
+                Lambda (first name) (last name)" Then each name pair gets 
+                logged in the DynamoDB table so I can see each time the API was called. I had a 
+                surprisingly hard time with this because I kept getting a CORS error. Turns out 
+                that I didn't copy/paste the API invoke URL exactly right, and once I did that,
+                it worked like a charm. A summary of what I did follows, with full original instructions found here: <a href=https://aws.amazon.com/getting-started/hands-on/build-web-app-s3-lambda-api-gateway-dynamodb/>Build a Basic Web Application</a>
+            </p>
+            <br>
+            <h4>Step 1</h4>
+            <p>
+                The first thing I did was make a rudimentary "Hello World" web app using
+                AWS Amplify. I deployed it locally without Git by drag-and-dropping the 
+                index.html file into the Amplify console. So far, users will be able to
+                visit the index.html URL and see "Hello world!" Not very exciting yet, 
+                but it's an important first step.
+            </p>
+            <br>
+            <h4>Step 2</h4>
+            <p>
+                Step two involved making a Lambda function. Lambda functions are serverless,
+                which means they're on-demand and I don't have to configure the underlying
+                infrastructure -- they just work when needed. Click on the button to see the
+                Python I used for it:
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#lambda">Code Snippet</button>
+            <div id="lambda" class="collapse">
+                <pre>
+                    #import the JSON utility package since we will be working with a JSON object
+                    import json
+                    # define the handler function that the Lambda service will use as an entry point
+                    def lambda_handler(event, context):
+                    # extract values from the event object we got from the Lambda service
+                    name = event['firstName'] +' '+ event['lastName']
+                    # return a properly formatted JSON object
+                    return {
+                        'statusCode': 200,
+                        'body': json.dumps('Hello from Lambda, ' + name)
+                        }
+                </pre>
+                </div>
+                <p>
+                    I deployed and tested the function and made sure it returned no errors.
+                </p>
+                
+            <br>
+            <h4>Step 3</h4>
+            <p>
+                The next step had me make a REST API using AWS API Gateway. This API used
+                a POST method, and I linked it to the Lambda function I made in Step 2. 
+                I then enabled CORS, or Cross-Origin Resource Sharing, to allow communication
+                with the API. Once I made and deployed the API, I tested it by manually inputting a 
+                first and last name. When I received a Code 200 as a response, I moved to 
+                the next step.
+            </p>
+            <br>
+            <h4>Step 4</h4>
+            <p>
+                Now that the app is deployed and the API and Lambda function are communicating,
+                I needed to make a database to store the first name and last name pairs in a 
+                persistant fashion so I could track how many API calls there were, and when they
+                were made. To accomplish this, I used AWS' noSQL database service DynamoDB.
+            </p>
+            <p>
+                Of course I needed to grant permission for the Lambda function to write to the
+                database, so I added an inline IAM policy to do so. Remember the code I showed you
+                in Step 2? That isn't actually the final code, but this is:
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#finallambda">Code Snippet</button>
+            <div id="finallambda" class="collapse">
+                <pre>
+                    # import the json utility package since we will be working with a JSON object
+                    import json
+                    # import the AWS SDK (for Python the package name is boto3)
+                    import boto3
+                    # import time 
+                    import time
+                    # import two packages to help us with dates and date formatting
+
+                    # create a DynamoDB object using the AWS SDK
+                    dynamodb = boto3.resource('dynamodb')
+                    # use the DynamoDB object to select our table
+                    table = dynamodb.Table('HelloWorldDatabase')
+
+                    # define the handler function that the Lambda service will use as an entry point
+                    def lambda_handler(event, context):
+                    # Get the current GMT time
+                        gmt_time = time.gmtime()
+
+                        # store the current time in a human readable format in a variable
+                        # Format the GMT time string
+                        now = time.strftime('%a, %d %b %Y %H:%M:%S +0000', gmt_time)
+
+
+                    # extract values from the event object we got from the Lambda service and store in a variable
+                        name = event['firstName'] +' '+ event['lastName']
+                    # write name and time to the DynamoDB table using the object we instantiated and save response in a variable
+                        response = table.put_item(
+                            Item={
+                                'ID': name,
+                                'LatestGreetingTime':now
+                                })
+                    # return a properly formatted JSON object
+                        return {
+                            'statusCode': 200,
+                            'body': json.dumps('Hello from Lambda, ' + name)
+                        }
+                </pre>
+        </div>
+        <p>
+            After testing to make sure the database can communicate with Lambda, I had the 
+            following architecture: my REST API could talk to Lambda, which could then talk to
+            DynamoDB. AWS Identity and Access Management gave permission for communication, but
+            the Amplify frontend is still disconnected from the back.
+        </p>
+            <br>
+            <h4>Step 5</h4>
+            <p>
+                The first thing to do now is to replace the basic Hello World HTML from Step 1 with something a bit more interesting:
+            </p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#finalhtml">Code Snippet</button>
+            <div id="finalhtml" class="collapse">
+                <div class="card card-body">
+                    <pre>
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Hello World</title>
+                            <!-- Add some CSS to change client UI -->
+                            <style>
+                            body {
+                                background-color: #232F3E;
+                                }
+                            label, button {
+                                color: #FF9900;
+                                font-family: Arial, Helvetica, sans-serif;
+                                font-size: 20px;
+                                margin-left: 40px;
+                                }
+                            input {
+                                color: #232F3E;
+                                font-family: Arial, Helvetica, sans-serif;
+                                font-size: 20px;
+                                margin-left: 20px;
+                                }
+                            </style>
+                            <script>
+                                // define the callAPI function that takes a first name and last name as parameters
+                                var callAPI = (firstName,lastName)=>{
+                                    // instantiate a headers object
+                                    var myHeaders = new Headers();
+                                    // add content type header to object
+                                    myHeaders.append("Content-Type", "application/json");
+                                    // using built in JSON utility package turn object to string and store in a variable
+                                    var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+                                    // create a JSON object with parameters for API call and store in a variable
+                                    var requestOptions = {
+                                        method: 'POST',
+                                        headers: myHeaders,
+                                        body: raw,
+                                        redirect: 'follow'
+                                    };
+                                    // make API call with parameters and use promises to get response
+                                    fetch("YOUR-API-INVOKE-URL", requestOptions)
+                                    .then(response => response.text())
+                                    .then(result => alert(JSON.parse(result).body))
+                                    .catch(error => console.log('error', error));
+                                }
+                            </script>
+                        </head>
+                        <body>
+                            <form>
+                                <label>First Name :</label>
+                                <input type="text" id="fName">
+                                <label>Last Name :</label>
+                                <input type="text" id="lName">
+                                <!-- set button onClick method to call function we defined passing input values as parameters -->
+                                <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
+                            </form>
+                        </body>
+                        </html>
+                    </pre>
+                </div>
+            </div>
+            <p>
+                This is the interface as the user sees it: they enter a first and last name, click Call API, and are returned a personalized message based on the names they entered.
+            </p>
+            <br>
+            <h4>Step 6</h4>
+            <p>
+                The final step in this lab is all about cleanup. In an effort to control costs and because I have no need to keep this application active, I went back through the steps and dismantled the application service by service.
+            </p>
+
+
+
+</body>
+</html>
