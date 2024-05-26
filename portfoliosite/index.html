@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <title>Technical Arts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<!-- The scrollable area -->
+<body class="w-auto p-3" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+
+    <!-- The navbar - The <a> elements are used to jump to a section in the scrollable area -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="navbar-nav">
+                    <a class="nav-link" href="#about">About Me</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="#projects">Projects</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="#paintings">Paintings</a>
+                </li>
+                <li class="navbar-nav">
+                    <a class="nav-link" href="#contact">Contact Me</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container-fluid p-5 bg-secondary-subtle text-white text-center">
+        <h1 class="display-4">Technical Arts</h1>
+    </div>
+
+    <!-- Section 1 -->
+    <div id="about" style="padding:50px 20px;">
+        <div class="container">
+            <h1 class="display-6">About Me</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <p>
+            My name is Adam Russo, and I've had two passions in life: art and computers.
+            Here, I can merge those passions and show off my creativity with syntax as well as with pigments.
+            This website is made using a combination of HTML, Bootstrap CSS, and JavaScript.
+            As I continue to work on it, I'll add more and more functionality.
+        </p>
+        <p>
+            Here's to cool things coming soon!
+        </p>
+    </div>
+
+    <!-- Section 2 -->
+    <div id="projects" style="padding:50px 20px;">
+        <div class="container">
+            <h1 class="display-6">Projects</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <p>
+            The first project is, of course, this website. I started building it on 2/27/24, and got the navbar,
+            the three sections, and the thumbnail gallery working. The following day, I finished the carousel and
+            added a modal form for email submissions. The hardest part was getting the carousel to open on whichever
+            thumbnail I clicked on, and not just whichever was set to "active." I used ChatGPT, w3schools.com. and
+            stackoverflow.com to help me through the bulk of the hurdles I faced. I also have a growing list of
+            other projects below, including a version of Google's dinosaur game that I'm calling "Hurdles".
+        </p>
+        
+        <div class="container">
+            <h3 class="lead">Other Projects</h3>
+            <ul>
+                <li>
+                    <a href="hurdles.html">Hurdles</a>
+                </li>
+                <li>
+                    <a href="otw.html">OvertheWire Wargames</a>
+                </li>
+                <li>
+                    <a href="apilab.html">AWS API Lab</a>
+                </li>
+                <li>
+                    <a href="cdpipeline.html">AWS Continuous Delivery Lab</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Section 3 -->
+    <div id="paintings" style="padding:50px 20px;">
+        <div class="container">
+            <h1 class="display-6">Paintings</h1>
+        </div>
+    </div>
+
+    <!-- Thumbnails -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="0">
+                    <img src="img\owl.JPG" class="img-fluid rounded" alt="Thumbnail 1">
+                </a>
+            </div>
+            <div class="col-sm">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="1">
+                    <img src="img\dragon.JPG" class="img-fluid rounded" alt="Thumbnail 2">
+                </a>
+            </div>
+            <div class="col-sm">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="2">
+                    <img src="img\tree.PNG" class="img-fluid rounded" alt="Thumbnail 3">
+                </a>
+            </div>
+            <div class="col-sm">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="3">
+                    <img src="img\forest.JPG" class="img-fluid rounded" alt="Thumbnail 4">
+                </a>
+            </div>
+
+
+            <!-- Add more thumbnails as needed -->
+        </div>
+    </div>
+
+    <!-- Modal for Enlarged Image and Carousel-->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img\owl.JPG" class="d-block img-fluid w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img\dragon.JPG" class="d-block img-fluid w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img\tree.PNG" class="d-block img-fluid w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img\forest.JPG" class="d-block img-fluid w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div id="contact">
+        <div class="container">
+            <h1 class="display-6">Contact Me</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailModal">
+            by Email
+        </button>
+
+        <!-- Email Modal -->
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">Compose Email</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Email form goes here -->
+                        <form id="emailForm">
+                            <div class="form-group">
+                                <label for="recipientEmail">Recipient Email:</label>
+                                <input type="email" class="form-control" id="recipientEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailMessage">Message:</label>
+                                <textarea class="form-control" id="emailMessage" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Email</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Handle form submission
+            $('#emailForm').submit(function (event) {
+                event.preventDefault();
+                // Implement your email sending logic here
+                alert('Email sent successfully!');
+                $('#emailModal').modal('hide'); // Close the modal after sending
+            });
+
+            // Update modal content on thumbnail click
+            $('[data-bs-toggle="modal"]').click(function () {
+                var imgSrc = $(this).attr('href');
+                $('#enlargedImg').attr('src', imgSrc);
+
+                // Set the active item in the carousel based on the clicked thumbnail
+                var thumbnailIndex = $(this).parent().index();
+                $('#carouselExampleControls').carousel(thumbnailIndex);
+
+                // Handle keyboard navigation within the carousel
+                $(document).bind('keyup', function (e) {
+                    if (e.which == 39) {
+                        $('#carouselExampleControls').carousel('next');
+                    } else if (e.which == 37) {
+                        $('#carouselExampleControls').carousel('prev');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
