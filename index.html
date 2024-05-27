@@ -199,7 +199,7 @@
                                 <label for="emailMessage">Message:</label>
                                 <textarea class="form-control" id="emailMessage" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Email</button>
+                            <button type="button" class="btn btn-primary" id="sendEmailBtn">Send Email</button>
                         </form>
                     </div>
                 </div>
@@ -215,6 +215,7 @@
                 // Implement your email sending logic here
                 alert('Email sent successfully!');
                 $('#emailModal').modal('hide'); // Close the modal after sending
+                location.reload()
             });
 
             // Update modal content on thumbnail click
