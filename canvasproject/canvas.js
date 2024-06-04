@@ -11,68 +11,6 @@ window.onload = function() {
     audio.play();
   };
 
-// draw a filled rectangle with x=, y=, width, height all = 100px.
-// c.fillStyle = 'rgba(255, 0, 0, 0.5)';
-// c.fillRect(100, 100, 100, 100);
-// c.fillStyle = 'rgba(0, 255, 0, 0.5)';
-// c.fillRect(400, 100, 100, 100);
-// c.fillStyle = 'rgba(0, 0, 255, 0.5)';
-// c.fillRect(300, 300, 100, 100);
-
-
-//draw a line
-// c.beginPath();
-// c.moveTo(50, 300);
-// c.lineTo(300, 100);
-// c.lineTo(400, 300);
-// c.strokeStyle = "#fa34a3";
-
-//the line doesn't show until calling c.stroke();
-//c.stroke();
-
-//draw an arc/circle with arguments: x, y, radius, (all integers); startangle(float), endangle(float).
-//important: if I don't use c.beginPath for a new element, the next element I draw will have a line connecting it to the last element that had a beginPath.
-
-//how to draw multiple copies of an element using a for-loop, and place each iteration in a random location on the screen.
-// for (var i = 0; i < 50; i++) {
-//     var x = Math.random() * window.innerWidth;
-//     var y = Math.random() * window.innerHeight;
-//     var randomColor = getRandomColor();
-    
-//     c.beginPath();
-//     c.arc(x, y, 30, 0, Math.PI * 2, false);
-//     // c.strokeStyle = 'blue';
-//     c.strokeStyle = randomColor;
-//     c.stroke();
-// }
-
-
-// //in order to randomize color, I have to make a function that does that.
-// setInterval(function ()
-// {
-//     arc(c, Math.random() * 300, Math.random() * 300);
-// }, 10);
-
-// //this part defines the getRandomColor function, and then specifies in hex which colors are available to me before randomly showing them on screen.
-// function getRandomColor() {
-//     var letters = '0123456789ABCDEF';
-//     var color = '#';
-//     for (var i = 0; i < 6; i++) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
-
-//making multiple circles that can move in random directions, at random speeds, and bounce off the walls without repeating code. Enter: object-oriented JavaScript!
-
-// var x = Math.random() * innerWidth;
-// var y = Math.random() * innerHeight;
-// var dx = (Math.random() - 0.5) * 10;
-// var dy = (Math.random() - 0.5) * 10;
-// var radius = 30;
-
-
-
 //mouse position.
 var mouse = {
     x: undefined,
@@ -91,11 +29,11 @@ var colorArray = [
 ];
 // Load different sounds for different colors
 var audioArray = {
-    '#FCCC92': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound1.mp3' with the path to your sound file
-    '#F2911B': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound2.mp3' with the path to your sound file
-    '#F2B872': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound3.mp3' with the path to your sound file
-    '#ED874C': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound4.mp3' with the path to your sound file
-    '#FFFFFF': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3')  // Replace 'sound5.mp3' with the path to your sound file
+    '#FCCC92': new Audio('https://raw.githubusercontent.com/analystrusso/portfoliosite/main/canvasproject/audiofiles/fireflies1.mp3'), 
+    '#F2911B': new Audio('https://raw.githubusercontent.com/analystrusso/portfoliosite/main/canvasproject/audiofiles/fireflies2.mp3'),
+    '#F2B872': new Audio('https://raw.githubusercontent.com/analystrusso/portfoliosite/main/canvasproject/audiofiles/fireflies3.mp3'),
+    '#ED874C': new Audio('https://raw.githubusercontent.com/analystrusso/portfoliosite/main/canvasproject/audiofiles/fireflies4.mp3'),
+    '#FFFFFF': new Audio('https://raw.githubusercontent.com/analystrusso/portfoliosite/main/canvasproject/audiofiles/fireflies5.mp3') 
 };
 
 //adding an event listener that listens for mouse movement.
