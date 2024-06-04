@@ -112,32 +112,32 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="0">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="0" data-thumbnail-index="0">
                     <img src="img\owl.JPG" class="img-fluid rounded" alt="Thumbnail 1">
                 </a>
             </div>
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="1">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="1" data-thumbnail-index="1">
                     <img src="img\dragon.JPG" class="img-fluid rounded" alt="Thumbnail 2">
                 </a>
             </div>
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="2">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="2" data-thumbnail-index="2">
                     <img src="img\tree.PNG" class="img-fluid rounded" alt="Thumbnail 3">
                 </a>
             </div>
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="3">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="3" data-thumbnail-index="3">
                     <img src="img\forest.JPG" class="img-fluid rounded" alt="Thumbnail 4">
                 </a>
             </div>
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="4">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="4" data-thumbnail-index="4">
                     <img src="img\beach.PNG" class="img-fluid rounded" alt="Thumbnail 5">
                 </a>
             </div>
             <div class="col-sm">
-                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="5">
+                <a href="#imgModal" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-slide-to="5" data-thumbnail-index="5">
                     <img src="img\fire.PNG" class="img-fluid rounded" alt="Thumbnail 6">
                 </a>
             </div>
@@ -187,6 +187,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#imageModal').on('show.bs.modal', function (e) {
+                var thumbnailIndex = $(e.relatedTarget).data('thumbnail-index');
+                $('#carouselExampleControls').carousel(thumbnailIndex);
+            });
+        });
+    </script>
 
     <!-- Section 4 -->
      <div id="contact">
