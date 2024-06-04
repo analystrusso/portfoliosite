@@ -91,11 +91,11 @@ var colorArray = [
 ];
 // Load different sounds for different colors
 var audioArray = {
-    '#FCCC92': new Audio('audiofiles/fireflies1.mp3'), // Replace 'sound1.mp3' with the path to your sound file
-    '#F2911B': new Audio('audiofiles/fireflies2.mp3'), // Replace 'sound2.mp3' with the path to your sound file
-    '#F2B872': new Audio('audiofiles/fireflies3.mp3'), // Replace 'sound3.mp3' with the path to your sound file
-    '#ED874C': new Audio('audiofiles/fireflies4.mp3'), // Replace 'sound4.mp3' with the path to your sound file
-    '#FFFFFF': new Audio('audiofiles/fireflies5.mp3')  // Replace 'sound5.mp3' with the path to your sound file
+    '#FCCC92': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound1.mp3' with the path to your sound file
+    '#F2911B': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound2.mp3' with the path to your sound file
+    '#F2B872': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound3.mp3' with the path to your sound file
+    '#ED874C': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3'), // Replace 'sound4.mp3' with the path to your sound file
+    '#FFFFFF': new Audio('https://github.com/analystrusso/portfoliosite/raw/main/audiofiles/fireflies1.mp3')  // Replace 'sound5.mp3' with the path to your sound file
 };
 
 //adding an event listener that listens for mouse movement.
