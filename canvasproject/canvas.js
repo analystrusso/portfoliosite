@@ -185,7 +185,7 @@ window.addEventListener('mousemove', function(event) {
 });
 
 // Touch event listener
-window.addEventListener('touchmove', function(event) {
+canvas.addEventListener('touchmove', function(event) {
     event.preventDefault(); // Prevent scrolling
     var touch = event.touches[0];
     mouse.x = touch.clientX;
@@ -270,4 +270,3 @@ function animate() {
 
 init();
 animate();
-
